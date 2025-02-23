@@ -36,29 +36,37 @@ module	topolar(i_clk, i_reset, i_ce, i_xval, i_yval,
 		2'b01: begin // Rotate by -315 degrees
 			xv[0] <=  e_xval - e_yval;
 			yv[0] <=  e_xval + e_yval;
-			ph[0] <= 19'h70000 >> (19-PW-1);
+//			ph[0] <= 19'h70000 >> (19-PW-1);
+			ph[0] <= 4'hC;
 			end
 		2'b10: begin // Rotate by -135 degrees
 			xv[0] <= -e_xval + e_yval;
 			yv[0] <= -e_xval - e_yval;
-			ph[0] <= 19'h30000 >> (19-PW-1);
+//			ph[0] <= 19'h30000 >> (19-PW-1);
+			ph[0] <= 4'hC;
 			end
 		2'b11: begin // Rotate by -225 degrees
 			xv[0] <= -e_xval - e_yval;
 			yv[0] <=  e_xval - e_yval;
-			ph[0] <= 19'h50000>> (19-PW-1);
+//			ph[0] <= 19'h50000>> (19-PW-1);
+			ph[0] <= 4'h4;
 			end
 		default: begin // Rotate by -45 degrees
 			xv[0] <=  e_xval + e_yval;
 			yv[0] <= -e_xval + e_yval;
-			ph[0] <= 19'h10000>> (19-PW-1);
+//			ph[0] <= 19'h10000>> (19-PW-1);
+			ph[0] <= 4'h4;
 			end
 		endcase
-	wire	[18:0]	cordic_angle [0:(NSTAGES-1)];
-	assign	cordic_angle[ 0] = 19'h0_9720>> (19-PW-1); //  26.565051 deg
-	assign	cordic_angle[ 1] = 19'h0_4fd9>> (19-PW-1); //  14.036243 deg
-	assign	cordic_angle[ 2] = 19'h0_2888>> (19-PW-1); //   7.125016 deg
+	wire	[(PW-1):0]	cordic_angle [0:(NSTAGES-1)];
+//	assign	cordic_angle[ 0] = 19'h0_9720>> (19-PW-1); //  26.565051 deg
+//	assign	cordic_angle[ 1] = 19'h0_4fd9>> (19-PW-1); //  14.036243 deg
+//	assign	cordic_angle[ 2] = 19'h0_2888>> (19-PW-1); //   7.125016 deg
 
+	assign	cordic_angle[ 0] = 4'h2; //  26.565051 deg
+	assign	cordic_angle[ 1] = 4'h1; //  14.036243 deg
+	assign	cordic_angle[ 2] = 4'h0; //   7.125016 deg
+	
 	genvar	i;
 	generate for(i=0; i<NSTAGES; i=i+1) begin : TOPOLARloop
 		always @(posedge i_clk)

@@ -1,3 +1,4 @@
+`default_nettype	none
 module tt_um_rkarl_Spiral(
   input  wire [7:0] ui_in,    // Dedicated inputs
   output wire [7:0] uo_out,   // Dedicated outputs
@@ -18,7 +19,7 @@ module tt_um_rkarl_Spiral(
   wire [9:0] pix_x;
   wire [9:0] pix_y;
   
-  wire [1:0] speed = {~ui_in[1],ui_in[0]};//Make the default 2
+  wire [1:0] speed = {ui_in[0],~ui_in[1]};//Make the default 2
   wire [2:0] background = ui_in[4:2];
   wire [2:0] foreGround = ui_in[7:5];
   hvsync_generator hvsync_gen(
@@ -39,7 +40,7 @@ module tt_um_rkarl_Spiral(
 
   always @(posedge vsync)
 	begin
-		angleOffset <= angleOffset+speed;
+		angleOffset <= angleOffset+{3'b000,speed};
 	end 
   
   topolar cordicAlg(
@@ -53,7 +54,7 @@ module tt_um_rkarl_Spiral(
   
   assign uo_out = {hsync, B[0], G[0], R[0], vsync, B[1], G[1], R[1]};
 
-  wire [4:0] r;
+  wire [3:0] r;
   
   hypCal hypotenuse(.x_pos(normilizedX),
 							.y_pos(normilizedY),
