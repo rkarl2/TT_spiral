@@ -18,7 +18,7 @@ module tt_um_rkarl_Spiral(
   wire [9:0] pix_x;
   wire [9:0] pix_y;
   
-  wire [1:0] speed = ~ui_in[1:0];
+  wire [1:0] speed = {~ui_in[1],ui_in[0]};//Make the default 2
   wire [2:0] background = ui_in[4:2];
   wire [2:0] foreGround = ui_in[7:5];
   hvsync_generator hvsync_gen(

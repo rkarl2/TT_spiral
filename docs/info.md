@@ -9,12 +9,13 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+Creates a arcemedes spiral (r=theta) using vga.
 
 ## How to test
 
-Explain how to use your project
+Set the frequency to 25 MHz and connect a pmod to vga to work. Changing the input values alters the foreground/background and speed of the spiral.
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+PMOD VGA
+Switches (optional for control)

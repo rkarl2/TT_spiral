@@ -14,8 +14,8 @@ module	topolar(i_clk, i_reset, i_ce, i_xval, i_yval,
 	output	reg		[(OW-1):0]	o_phase;
 
 	wire	signed [(WW-1):0]	e_xval, e_yval;
-	assign	e_xval = { {(2){i_xval[(IW-1)]}}, i_xval, {(WW-IW-2){1'b0}} };
-	assign	e_yval = { {(2){i_yval[(IW-1)]}}, i_yval, {(WW-IW-2){1'b0}} };
+	assign	e_xval = i_xval;
+	assign	e_yval = i_yval;
 
 	// Declare variables for all of the separate stages
 	reg	signed	[(WW-1):0]	xv	[0:NSTAGES];
