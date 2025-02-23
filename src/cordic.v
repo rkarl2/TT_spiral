@@ -6,7 +6,6 @@ module	topolar(i_clk, i_reset, i_ce, i_xval, i_yval,
 	localparam	IW=7,	// The number of bits in our inputs
 			OW=4,// The number of output bits to produce
 			NSTAGES=3,
-			XTRA= 0,// Extra bits for internal precision
 			WW=7,	// Our working bit-width
 			PW=4;	// Bits in our phase variables
 	input					i_clk, i_reset, i_ce;

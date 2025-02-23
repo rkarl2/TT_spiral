@@ -6,6 +6,7 @@ module hypCal (
 	output reg [3:0] r_sqroot
 );
 wire [12:0] xy_pos;
+wire _unused = &{x_pos[1:0],y_pos[1:0]};
 
 wire  [6:0] norm_x = (x_pos[9] == 1'b0) ? x_pos[8:2] : ~(x_pos[8:2]);
 wire  [6:0] norm_y = (y_pos[9] == 1'b0) ? y_pos[8:2] : ~(y_pos[8:2]);
